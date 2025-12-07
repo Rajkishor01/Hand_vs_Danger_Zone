@@ -3,39 +3,20 @@
 A real-time system that tracks the user’s hand and evaluates its distance to a virtual danger box.
 
 
-## System Pipeline (Unicode Diagram)
 
-┌─────────┐      ┌────────────┐      ┌────────────────────────────┐
-│  Frame  │ ───▶ │ Gray/Blur  │ ───▶ │ Motion Mask + Skin Mask    │
-└─────────┘      └────────────┘      └────────────────────────────┘
-                                         │
-                                         │
-                                         ▼
-                               ┌───────────────────┐
-                               │    Hand Mask      │
-                               └───────────────────┘
-                                         │
-                                         ▼
-                               ┌───────────────────┐
-                               │ Contour Filtering │
-                               └───────────────────┘
-                                         │
-                                         ▼
-                         ┌──────────────────────────────────────┐
-                         │   Convex Hull (Hand Boundary)        │
-                         └──────────────────────────────────────┘
-                                         │
-                                         ▼
-                    ┌──────────────────────────────────────────────┐
-                    │  Closest Hand-Point to Danger Box            │
-                    └──────────────────────────────────────────────┘
-                                         │
-                                         ▼
-                      ┌────────────────────────────────────────┐
-                      │        SAFE / WARNING / DANGER         │
-                      └────────────────────────────────────────┘
+## System Pipeline
 
-
+```mermaid
+graph TD
+    A[Frame] --> B[Gray/Blur]
+    B --> C[Motion Mask + Skin Mask]
+    C --> D[Hand Mask]
+    D --> E[Contour Filtering]
+    E --> F[Convex Hull / Hand Boundary]
+    F --> G[Closest Hand-Point to Danger Box]
+    G --> H{SAFE / WARNING / DANGER}
+    
+    style H fill:#f9f,stroke:#333,stroke-width:2px
 ## Threshold Logic
 DANGER   : distance ≤ 10  
 WARNING  : 10 < distance ≤ 60  
