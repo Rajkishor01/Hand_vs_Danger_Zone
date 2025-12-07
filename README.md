@@ -16,10 +16,6 @@ graph TD
     B --> C[Motion Mask + Skin Mask]
     C --> D[Hand Mask]
     D --> E[Contour Filtering]
-    E --> F[Convex Hull (Hand Boundary)]
+    E --> F[Convex Hull/Hand Boundary]
     F --> G[Closest Hand-Point to Danger Box]
     G --> H{SAFE / WARNING / DANGER}
-
-    style H fill:#ffcccc,stroke:#333,stroke-width:2px
-    style F fill:#e0f7ff,stroke:#333,stroke-width:1px
-    style D fill:#e8ffe8,stroke:#333,stroke-width:1px
