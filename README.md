@@ -1,8 +1,11 @@
 # Hand_vs_Danger_Zone
 
-camera feed to track the position of the user’s hand in real time and detect when the hand approaches a virtual object on the screen.
+A real-time system that uses a camera feed to track the user's hand and detect when it approaches a virtual danger zone on the screen.
 
-When the hand reaches this boundary, the system should trigger a clear on-screen warning: DANGER DANGER
+When the hand reaches this boundary, the system triggers an on-screen alert: **DANGER DANGER**.
+
+
+## System Pipeline
 
 Frame ---> Gray/Blur ---> Motion Mask + Skin Mask ---> Hand Mask ---> Contour Filtering
                         |                                  |
@@ -17,6 +20,9 @@ Frame ---> Gray/Blur ---> Motion Mask + Skin Mask ---> Hand Mask ---> Contour Fi
                                                            v
                                            SAFE / WARNING / DANGER
 
-DANGER : distance ≤ 10
-WARNING : 10 < distance ≤ 60
-SAFE : distance > 60
+
+## Threshold Logic
+
+DANGER   : distance ≤ 10  
+WARNING  : 10 < distance ≤ 60  
+SAFE     : distance > 60
